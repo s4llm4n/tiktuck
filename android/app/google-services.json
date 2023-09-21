@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422697864964",
+    "project_id": "ticktuck-d9cfc",
+    "storage_bucket": "ticktuck-d9cfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422697864964:android:e600c58e843966c1490a51",
+        "android_client_info": {
+          "package_name": "com.s4llm4n.tiktuck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIRIqIglye8reEbGUDTI6Q_lZCAv72rYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
