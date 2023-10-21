@@ -6,10 +6,10 @@ import 'package:firstproject/views/screens/add_video_screen.dart';
 import 'package:firstproject/views/screens/video_screen.dart';
 import 'package:flutter/material.dart';
 
-const pages = [
+List pages = [
   VideoScren(),
   Text('Search Screen'),
-  AddVideoScreen(),
+  const AddVideoScreen(),
   Text('Messages Screen'),
   Text('Profile Screen'),
 ];
