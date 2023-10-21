@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firstproject/constant.dart';
+import 'package:firstproject/models/video.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:video_compress/video_compress.dart';
 
@@ -40,7 +42,7 @@ class UploadVideoController extends GetxController {
   }
 
   // upload video
-  uploadVido(String songName, String caption, String videoPath) async {
+  uploadVideo(String songName, String caption, String videoPath) async {
     try {
       String uid = firebaseAuth.currentUser!.uid;
       DocumentSnapshot userDoc = await firestore.collection('users').doc(uid).get();
@@ -50,9 +52,29 @@ class UploadVideoController extends GetxController {
       String videoUrl = await _uploadVideoToStorage("Video $len", videoPath);
       String thumbnail = await _uploadImageToStorage("Video $len", videoPath);
 
-      
+      Video video = Video(
+        username: (userDoc.data()! as Map<String, dynamic>) ['name'], 
+        uid: uid, 
+        id: "Video $len", 
+        likes: [], 
+        commentCount: 0, 
+        shareCount: 0, 
+        songName: songName, 
+        caption: caption, 
+        videoUrl: videoUrl, 
+        profilePhoto: (userDoc.data()! as Map<String, dynamic>) ['profilePhoto'], 
+        thumbnail: thumbnail
+      );
+
+      await firestore.collection('videos').doc('Video $len').set(
+        video.toJson(),
+      );
+      Get.back();
     } catch (e) {
-      
+      Get.snackbar(
+        'Error Uploading Video', 
+        e.toString(),
+      );
     }
   }
 }
