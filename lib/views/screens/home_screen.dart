@@ -2,17 +2,30 @@ import 'package:firstproject/constant.dart';
 import 'package:firstproject/views/widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int pageIdx = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (idx) {
+          setState(() {
+            pageIdx = idx;
+          });
+        },
         type: BottomNavigationBarType.fixed,
         backgroundColor: backgroundColor,
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.white,
+        currentIndex: pageIdx,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home, size: 30),
@@ -36,9 +49,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
       ),
-      body: Center(
-        child: Text('Home Screen'),
-      ),
-    );
+      body: pages[pageIdx],
+      );
   }
 }
