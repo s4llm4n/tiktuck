@@ -3,15 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firstproject/controllers/auth_controller.dart';
 import 'package:firstproject/views/screens/add_video_screen.dart';
+import 'package:firstproject/views/screens/profile_screen.dart';
+import 'package:firstproject/views/screens/search_screen.dart';
 import 'package:firstproject/views/screens/video_screen.dart';
 import 'package:flutter/material.dart';
 
 List pages = [
   VideoScren(),
-  Text('Search Screen'),
+  SearchScreen(),
   const AddVideoScreen(),
   Text('Messages Screen'),
-  Text('Profile Screen'),
+  ProfileScreen(uid: authController.user.uid),
 ];
 
 // COLORS
