@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
   final Rx<Map<String, dynamic>> _user = Rx<Map<String, dynamic>>({});
-
   Rx<String> _uid = "".obs;
+
+  get user => null;
 
   updateUserId(String uid) {
     _uid.value = uid;
@@ -20,7 +21,7 @@ class ProfileController extends GetxController {
       .get();
 
     for (int i = 0; i < myVideos.docs.length; i++) {
-      thumbnails.add((myVideos.docs[i].data() as dynamic)['thumbnails']);
+      thumbnails.add((myVideos.docs[i].data() as dynamic)['thumbnail']);
     }
 
     DocumentSnapshot userDoc = 
@@ -48,5 +49,24 @@ class ProfileController extends GetxController {
       .get();
       followers = followerDoc.docs.length;
       following = followingDoc.docs.length;
+
+      firestore.collection('users').doc(_uid.value).collection('followers').doc(authController.user.uid).get().then((value) {
+        if(value.exists) {
+          isFollowing = true;
+        } else  {
+          isFollowing = false;
+        }
+      });
+
+      _user.value = {
+        'followers': followers.toString(),
+        'following': following.toString(),
+        'isFollowing': isFollowing,
+        'likes': likes.toString(),
+        'profilePhoto': profilePhoto,
+        'name': name,
+        'thumbnails': thumbnails,
+    };
+    update();
   }
 }
