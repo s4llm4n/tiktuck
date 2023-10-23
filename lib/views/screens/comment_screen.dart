@@ -6,9 +6,9 @@ import 'package:timeago/timeago.dart' as tago;
 
 class CommentScreen extends StatelessWidget {
   final String id;
-  CommentScreen({super.key,
+  CommentScreen({Key? key,
     required this.id,
-  });
+  }) : super(key: key);
 
   final TextEditingController _commentController = TextEditingController();
   CommentController commentController = Get.put(CommentController());

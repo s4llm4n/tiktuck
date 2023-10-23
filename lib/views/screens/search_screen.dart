@@ -1,11 +1,11 @@
 import 'package:firstproject/models/user.dart';
 import 'package:firstproject/views/screens/profile_screen.dart';
-import 'package:flutter/material.dart' show AppBar, BuildContext, Center, CircleAvatar, Colors, FontWeight, InkWell, InputDecoration, ListTile, ListView, MaterialPageRoute, Navigator, NetworkImage, Scaffold, StatelessWidget, Text, TextFormField, TextStyle, Widget;
+import 'package:flutter/material.dart' show AppBar, BuildContext, Center, CircleAvatar, Colors, FontWeight, InkWell, InputDecoration, Key, ListTile, ListView, MaterialPageRoute, Navigator, NetworkImage, Scaffold, StatelessWidget, Text, TextFormField, TextStyle, Widget;
 import 'package:get/get.dart';
 import 'package:firstproject/controllers/search_controller.dart';
 
 class SearchScreen extends StatelessWidget {
-  SearchScreen({super.key});
+  SearchScreen({Key? key}) : super(key: key);
 
   final SearchController searchController = Get.put(SearchController());
 

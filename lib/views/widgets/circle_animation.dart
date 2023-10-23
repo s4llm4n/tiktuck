@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CircleAnimation extends StatefulWidget {
   final Widget child;
-  const CircleAnimation({super.key,
+  const CircleAnimation({Key? key,
     required this.child,
-  });
+  }): super(key: key);
 
   @override
   State<CircleAnimation> createState() => _CircleAnimationState();

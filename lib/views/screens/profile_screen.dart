@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firstproject/constant.dart';
 import 'package:firstproject/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,10 +7,9 @@ import 'package:get/get.dart';
 class ProfileScreen extends StatefulWidget {
   final String uid;
   const ProfileScreen({
-    super.key,
+    Key? key,
     required this.uid,
-  });
-
+  }) : super(key: key);
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -28,11 +28,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return GetBuilder<ProfileController>(
       init: ProfileController(),
       builder: (controller) {
-          if (controller.user.isEmpty) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+        if (controller.user.isEmpty) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black12,
@@ -166,9 +166,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       child: Center(
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            if(widget.uid == authController.user.uid) {
+                              authController.signOut();
+                            }
+                          },
                           child: Text(
-                            'Sign Out',
+                            widget.uid == authController.user.uid 
+                              ? 'Sign Out'
+                              : controller.user['isFollowing']
+                                ? 'Follow'
+                                : 'Unfollow',
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,

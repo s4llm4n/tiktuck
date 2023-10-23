@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddVideoScreen extends StatelessWidget {
-  const AddVideoScreen({super.key});
+  const AddVideoScreen({Key? key}): super(key: key);
 
   pickVideo(ImageSource src, BuildContext context) async {
     final video = await ImagePicker().pickVideo(source: src);

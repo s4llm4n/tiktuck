@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VideoScren extends StatelessWidget {
-  VideoScren({super.key});
+  VideoScren({Key? key}) : super(key: key);
 
   final VideoController videoController = Get.put(VideoController());
 

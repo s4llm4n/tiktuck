@@ -1,10 +1,11 @@
 import 'package:firstproject/constant.dart';
 import 'package:firstproject/controllers/auth_controller.dart';
+import 'package:firstproject/views/screens/auth/login_screen.dart';
 import 'package:firstproject/views/widgets/text_input_field.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
-  SignupScreen({super.key});
+  SignupScreen({Key? key}): super(key: key);
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -136,10 +137,10 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    // ignore: avoid_print
-                    print('navigating user');
-                  },
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ),
+                ),
                   child: Text(
                     'Login',
                     style: TextStyle(fontSize: 20, color: buttonColor),
